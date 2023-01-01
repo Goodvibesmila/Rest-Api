@@ -1,0 +1,20 @@
+[
+    {
+      "Modell": "Talbot-Lago T150-C SS",
+      "Id": 1,
+      "color": "silverblue",
+      "price": "100 Million"
+    },
+    {
+      "Modell": "Messerschmitt - Bubble Car KR 200 - 1960",
+      "Id": 2,
+      "color": "mintygreen",
+      "price": "10 Million"
+    },
+    {
+      "Modell": "Bugatti Type 57SC Atlantic",
+      "Id": 3,
+      "color": "blue",
+      "price": "50 Million"
+    }
+  ]

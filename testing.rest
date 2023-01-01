@@ -1,0 +1,38 @@
+//Här testas alla endpoints. Filen används inte av ngn annan
+// Man kan klicka på send request. Funkar det så 
+// Är det inget i backend som inte funkar, eller servern. 
+//Då kanske det är ngt i frontend, då får man felsöka.
+// Nu kan vi se att min statuskod funkar "står 200OK"
+// fick också ut min get sträng "härjar"
+GET http://localhost:3000/api/cars
+
+###
+
+//postanrop, måste ha med Content-type för att 
+// kunna hämta data.
+POST http://localhost:3000/api/cars
+Content-Type: application/json
+
+{
+        "Modell":"NewCar",
+        "Id":"",
+        "color":"NewcarColor",
+        "price":"We'll see"
+}
+
+###
+
+PUT http://localhost:3000/api/cars/1
+Content-Type: application/json
+
+{
+        "Modell" : "NewCar",
+        "color" : "NewcarColor",
+        "price" : "We'll see"
+}
+
+###
+
+DELETE http://localhost:3000/api/cars
+
+//Man skiljer sina endpoints med tre hashtags.
