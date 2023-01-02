@@ -33,6 +33,6 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/cars
+DELETE http://localhost:3000/api/cars/2
 
 //Man skiljer sina endpoints med tre hashtags.

@@ -1,6 +1,7 @@
 
 // Variabel som hämtar express "lägger express i en låda".
 const express = require("express");
+const cors = require("cors");
 
 // Kan jag skriva såhär för att hämta data från min json-fil?
 //const data = require('./cars.json');
@@ -14,6 +15,7 @@ const fs = require('fs');
 
 // use = använd på alla. Kan använda json ist för send.
 //För att skicka med all jsondata med expressmetod.
+app.use(cors())
 app.use(express.json())
 
 // Den hämtar det som finns på databasen som servern innehåller.
@@ -36,6 +38,7 @@ app.use(express.json())
 //kan jag skriva .json(data) för att jag hämtar datan genom min cars.json 
 // i variablen data däruppe?
 
+
 app.get('/api/cars', (req, res) => {
     fs.readFile("./cars.json", (err, data) => {
         if(err) {
@@ -46,6 +49,18 @@ app.get('/api/cars', (req, res) => {
             return;
         })
 });
+
+
+app.get('/api/cars/:id', (req, res) => {
+    fs.readFile("cars.json", (err, data) => {
+        if(err) {
+            res.status(404).send("No Id found")
+        }
+        const cars = JSON.parse(data)
+        const car = cars.find((car) => car.id == req.params.id);
+        res.status(200).send(user)
+    })
+})
 
 
 // 201 betyder created.
@@ -76,16 +91,16 @@ app.post('/api/cars', (req, res) => {
 })
 
 //Put uppdaterar data/ byter ut data.
-app.put('/api/cars/:id', (req, res) => {
+app.put('/api/cars/:Id', (req, res) => {
     fs.readFile("./cars.json", (err, data) => {
         const cars = JSON.parse(data)
-        const car = cars.find((car) => car.id == req.params.id);
+        const car = cars.find((car) => car.Id == req.params.Id);
         if (!car) {
-            res.status(404).send("The car does not exist");
+            res.status(404).send("Car doesn not excist");
 
         } else{
             cars.find((car) => {
-                if(car.id == req.params.id) {
+                if(car.Id == req.params.Id) {
                 car.Modell = req.body.Modell,
                 car.color = req.body.color,
                 car.price = req.body.price
@@ -93,17 +108,36 @@ app.put('/api/cars/:id', (req, res) => {
             });
 
             fs.writeFile("./cars.json", JSON.stringify(cars, null, 2), () => {
-                res.status(202).send(cars);
+                res.status(202).send("A new car was updated");
             })
         }       
     })
 });
 
 //Delete för att ta bort data.
-app.delete('/api/cars', (req, res) => {
-    fs.readFile("./cars.json", (err, data) =>
-    
-    )
+app.delete('/api/cars/:Id', (req, res) => {
+    fs.readFile("cars.json", (err, data) => {
+    if(err) {
+        res.status(404).send("Oops, something went wrong")
+    }else{
+        const cars = JSON.parse(data);
+        const carId = cars.find((car) => car.Id == req.params.Id);
+        const index = cars.indexOf(carId);
+
+        if(index >= 0) {
+            cars.splice(index, 1)
+        }else {
+            res.status(404).send("Couldnt find car.")
+        }
+
+        fs.writeFile("cars.json", JSON.stringify(cars, null, 2), (err) => {
+            if(err) {
+                req.status(404).send("ooppps")
+            }
+            res.status(200).send(cars)
+        })
+    }
+    })
 })
 
 //Skapar ett fetchpromise. Kopplar därför ihop med.then
