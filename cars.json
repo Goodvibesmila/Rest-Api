@@ -16,17 +16,5 @@
     "Id": 3,
     "color": "blue",
     "price": "50 Million"
-  },
-  {
-    "Modell": "hejhej",
-    "Id": 4,
-    "color": "blå",
-    "price": "2"
-  },
-  {
-    "Modell": "tesla",
-    "Id": 5,
-    "color": "svart",
-    "price": "1 miljon"
   }
 ]

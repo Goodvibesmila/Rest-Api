@@ -1,42 +1,10 @@
-
-// Variabel som hämtar express "lägger express i en låda".
 const express = require("express");
 const cors = require("cors");
-
-// Kan jag skriva såhär för att hämta data från min json-fil?
-//const data = require('./cars.json');
-
-//vanligt att döpa variabeln till app. För att Köra expressfunktionen/paketet.
 const app = express();
-
 const fs = require('fs');
-//const { findSourceMap } = require("module");
-//const { userInfo } = require("os");
-
-// use = använd på alla. Kan använda json ist för send.
-//För att skicka med all jsondata med expressmetod.
 app.use(cors())
 app.use(express.json())
 
-// Den hämtar det som finns på databasen som servern innehåller.
-// På den URL:en som vi väljer. När man surfar till den URL:en 
-// Ska följande hämtas - Det vi väljer, i detta fallet det som
-// finns i vår JSONfil (asså databasinnehållet)
-
-// '/api' Bestämmer var URL:en ska heta/vad man ska surfa in på.
-//Har lagt till cars.
-// Följt av en anonym callbackfunktion - Vill vanligtvis
-// Skicka in två saker/parameter i callbackfunktionen. Request, och response.
-// Kan döpas till vad som, men man brukar skriva req och res.
-// HTTP-respons-statuskoder. Alltså koder som talar om ngt. 200 är "det här har hänt, det här är okej"
-// 201 är till exempel created.
-// .send betyder = För att vi skall skicka tillbaka
-//Det som är i fnuttarna, ELLER den datan vi har i JSONfilen - skall skickas tillbaka till servern.
-//res.status är för att skapa respons.statuskoderna.
-
-//Endpoint som hämtar alla produkter.
-//kan jag skriva .json(data) för att jag hämtar datan genom min cars.json 
-// i variablen data däruppe?
 
 
 app.get('/api/cars', (req, res) => {
@@ -51,21 +19,17 @@ app.get('/api/cars', (req, res) => {
 });
 
 
-app.get('/api/cars/:id', (req, res) => {
+app.get('/api/cars/:Id', (req, res) => {
     fs.readFile("cars.json", (err, data) => {
         if(err) {
-            res.status(404).send("No Id found")
+            res.status(404).send("No ID found")
         }
         const cars = JSON.parse(data)
         const car = cars.find((car) => car.id == req.params.id);
-        res.status(200).send(user)
+        res.status(200).send(car)
     })
 })
 
-
-// 201 betyder created.
-//Kan ha samma URL Till post som jag har på Get. För varje anropsmetod.
-// post = lägga till data.
 
 app.post('/api/cars', (req, res) => {
     fs.readFile("./cars.json", (err, data) => {
@@ -73,9 +37,16 @@ app.post('/api/cars', (req, res) => {
             res.status(404).send("Oops, something went wrong")}
         
             const cars = JSON.parse(data)
+            let allcars = [];
+            for(let i = 0; i < cars.length; i++) {
+                allcars.push(cars[i].Id);
+            }
+            
+            let highestid = (Math.max(...allcars));
+        
             const postcars = {
                 Modell: req.body.Modell,
-                Id: cars.length +1,
+                Id: highestid +1,
                 color: req.body.color,
                 price: req.body.price
             }
@@ -90,13 +61,13 @@ app.post('/api/cars', (req, res) => {
         })
 })
 
-//Put uppdaterar data/ byter ut data.
+
 app.put('/api/cars/:Id', (req, res) => {
     fs.readFile("./cars.json", (err, data) => {
         const cars = JSON.parse(data)
         const car = cars.find((car) => car.Id == req.params.Id);
         if (!car) {
-            res.status(404).send("Car doesn not excist");
+            res.status(404).send("Oh, No! Error!");
 
         } else{
             cars.find((car) => {
@@ -114,7 +85,8 @@ app.put('/api/cars/:Id', (req, res) => {
     })
 });
 
-//Delete för att ta bort data.
+
+
 app.delete('/api/cars/:Id', (req, res) => {
     fs.readFile("cars.json", (err, data) => {
     if(err) {
@@ -127,7 +99,7 @@ app.delete('/api/cars/:Id', (req, res) => {
         if(index >= 0) {
             cars.splice(index, 1)
         }else {
-            res.status(404).send("Couldnt find car.")
+            res.status(404).send("Could not find car.")
         }
 
         fs.writeFile("cars.json", JSON.stringify(cars, null, 2), (err) => {
@@ -140,47 +112,6 @@ app.delete('/api/cars/:Id', (req, res) => {
     })
 })
 
-//Skapar ett fetchpromise. Kopplar därför ihop med.then
-//Fetch renderar ett svar.
-//Metod json för att kunna hämta data.
-// sen .then för att hämta ut datan.
-/*fetch('http://localstorage:3000/api/cars', {
-    method: 'post',
-    headers:{
-        'Content-Type': 'application/json'
-    }
-    body: JSON.stringify({
-        Name: 'user 1'
-    })
-})
-.then(res => {
-    if (res.ok) {
-console.log('success')
-    } else {
-        console.log('not successfull')
-    }
-        res =>.json()
-})
-.then(data => console.log(data))*/
 
-//Såhär tror jag att man skriver GET i VG uppgiften
-//Hämtar en av mina cars/resurser.
-/*app.get('api/cars/:id', (req, res) => {
-    req.params.id
-})*/
 
-//Bestämmer vilken port vi vill köra den på.Nu kör vi port 3000.
-// När man kör med databaser kommer vi använda något mer dynamiskt.
-
-//Callbackfunktion efter porten. Innehåller strängen Servern är igång.
 app.listen(3000, () => console.log("server is active"));
-
-
-//fetch('http://localhos:3000/api/cars')
-// ----------------------------------------------------------
-// Ovanstående drar igång en express server och skapar endpoints. 
-
-
-//app.delete('/api/cars');
-
-//app.put('/api/cars');

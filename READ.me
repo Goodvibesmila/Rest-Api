@@ -3,14 +3,14 @@ REST-Api
 
 Beskrivning av projekt:
 Syftet med projektet är att med hjälp av en express-server
-bygga en fungerande backend kod av ett webb-API, Rest-api.
+bygga en fungerande backend kod av ett Rest-api.
 Rest-api:ets HTTP innehåller olika endpoints. En GET, POST, PUT och DELETE
 för att kunna manipulera/hämta information i en JSON-fil. Datan som finns i 
 JSON-filen är kopplat till frontend där informationen som finns i servern,
 också kan visas på/hämtas av en webbläsare. 
 
 Vilka krav som är uppfyllda:
-Enligt skolans projektbeskrivning, är samtliga G-krav uppfyllda. 
+Enligt skolans projektbeskrivning, är samtliga G-krav, samt VG-krav uppfyllda. 
 - Projektet innehåller minst 4 st. endpoints (GET, POST, PUT & DELETE för en resurs)
 Samtliga endpoints skall kunna nås via en REST Client fil (.rest|.http)
 
@@ -25,6 +25,11 @@ Datan i JSON-filen skall uppdateras då något läggs till, uppdateras eller tas
 
 - Uppgiften lämnas in i tid!
 
+- Alla punkter för godkänt är uppfyllda
+
+- Ett klient-gränssnitt skall byggas för att anropa API:ets alla olika endpoints och presentera datan,
+redigeringsformulär skall fyllas i med befintlig information.
+- Ytterligare en GET endpoint skall läggas till där det går att hämta ett specifikt objekt
 
 Info om hur projektet har byggts och körts:
 Jag har byggt projektet i backend, frontend, med hjälp av REST och NPM/Express.
@@ -32,6 +37,21 @@ Jag har också använt GIT/Github och projekt/Issues som hjälpmedel.
 
 - frontend: Skrivet i style.CSS, index.HTML och Script.js
 - backend: Skrivet i server.js, express, node.js och NPM.
-- testing.rest: Endpoints testad i REST. 
+- testing.rest: Endpoints testad i REST genom extension REST-CLIENT. 
 - install npm: Server testad i Nodemon. Har också använt NPM som pakethanterare.
 - install express: Jag har installerat express, genom NPM för att kunna hämta och skapa en server.
+
+KOM IGÅNG MED PROJEKTET:
+
+1. Logga in på Github-repot. Clona ner repot via din terminal på skrivbordet.
+2. Öppna upp projektet i VS-code. Öppna terminalen i VS-code.
+3. Skriv sedan npm install, enter.
+4. Om du inte har Nodemon installerat globalt så kan du Starta med node server.js
+
+Nu är servern igång och du kan börja arbeta med projektet.
+Du kan också öppna live servern för att se projektet i webbläsaren.
+Jag har också sparat en Backingjson.json fil med all Json-data så att man kan testa och ändra hur mycket man vill,
+utan att förlora ursprungsinformationen. Då det bara är att kopiera den från Backingfilen.
+
+GITHUB- repository
+https://github.com/Goodvibesmila/Rest-Api 

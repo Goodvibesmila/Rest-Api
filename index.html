@@ -11,15 +11,15 @@
 <body>
     <header>
         <h2>VÄLKOMMEN TILL BILPARADISET</h2>
-     </header>
+    </header>
      
 <main>
     <div>
-    <h1> Skriv ner vilken din drömbil är</h1>
+    <h1> Vilken är din drömbil?</h1>
     <br>
-    <p>Här kan du skriva ner vad du har för drömbil, och spara i drömbilsregistret.</p>
+    <p>Här kan du skriva ner vad du har för drömbil och spara i drömbilsregistret.</p>
     <br>
-        <label for="Modell">Vilken är din dröm-modell här.</label>
+        <label for="Modell">Vilken är din dröm-modell.</label>
         <br>
         <input class="Modell" type="text">
         <br>
@@ -27,17 +27,52 @@
         <br>
         <input class="color" type="text">
         <br>
-        <label for="Price">Vad kommer bilen att kosta?</label>
+        <label for="Price">Vad kommer bilen att kosta? (Avsluta med KR)</label>
         <br>
         <input class="price" type="text">
         <br>
         <br>
         <button>Lägg till bilen i drömbilsregistret.</button>
     <br>
-    <h1> Här är en lista på alla drömbilar som finns i registret.</h1>
-    <div class="carlist">
-
-    </div>
+    <br>
+        <p>Vill du ändra en bil? Fyll i information nedan.</p>
+    <br>
+        <label for="Modell">Fyll i ID för bilen du vill ändra.</label>
+        <br>
+        <input class="Idchange" type="text">
+        <br>
+        <label for="Modell">Vad för modell önskas?</label>
+        <br>
+        <input class="Modellchange" type="text">
+        <br>
+        <label for="Color">Vilken färg vill du att bilen skall ha?</label>
+        <br>
+        <input class="colorchange" type="text">
+        <br>
+        <label for="Price">Vad ska bilen kosta?</label>
+        <br>
+        <input class="pricechange" type="text">
+        <br>
+        <br>
+        <button class="buttonchange">Ändra din bil.</button>
+    <br>
+    <br>
+        <p>Vill du ta bort en bil?</p>
+        <br>
+        <label for="Modell">Fyll i ID för bilen du vill ta bort.</label>
+        <br>
+        <input class="Id" type="text">
+        <br>
+        <br>
+        <button class="removebutton">Ta bort din bil.</button>
+    <br>
+        <h1> Här är en lista på alla drömbilar som finns i drömbilsregistret.</h1>
+        <div class="carlist">
+        </div>
+    <br>
+        <h1> VECKANS BIL</h1>
+        <div class="caroftheweek">
+        </div>
     </div>
     </main>
 </body>

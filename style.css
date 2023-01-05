@@ -22,7 +22,7 @@ main {
     padding: 3%;
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
 }
 
 h1 {
@@ -41,6 +41,15 @@ input {
 button {
     background-color: rgb(226, 230, 248);
     padding: 0.2rem;
+}
+
+.carlist {
+    padding-top: 1rem;
+}
+
+.caroftheweek {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
 }
 
 
